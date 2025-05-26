@@ -4,6 +4,8 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MemberController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,6 +14,12 @@ Route::get('/', function () {
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+    Route::middleware(['auth', 'role:admin'])->get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+
+// Member-only dashboard
+Route::middleware(['auth', 'role:member'])->get('/member/mem-dashboard', [MemberController::class, 'index'])->name('member.mem-dashboard');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
