@@ -21,6 +21,8 @@ class Register extends Component
 
     public string $password_confirmation = '';
 
+    public string $matrix_no = '';
+
     /**
      * Handle an incoming registration request.
      */
@@ -28,8 +30,9 @@ class Register extends Component
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'matrix_no' => ['required', 'string', 'max:12'],
         ]);
 
         $validated['password'] = Hash::make($validated['password']);

@@ -10,4 +10,14 @@ class AdminController extends Controller
     {
         return view('dashboard');
     }
+
+    public function create()
+    {
+        return view('manage_member.add-mem-dashboard');
+    }
+
+    public function list()
+    {
+        return view('manage_member.list-all-mem-dashboard');
+    }
 }
