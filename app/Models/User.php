@@ -23,6 +23,10 @@ class User extends Authenticatable
         'email',
         'password',
         'matrix_no',
+        'role',
+        'year',
+        'semester',
+        'position'
     ];
 
     /**

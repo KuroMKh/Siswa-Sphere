@@ -33,6 +33,4 @@ class MemberController extends Controller
         return view('member.mem-profile'); // Blade view for members
     }
 
-
-
 }
