@@ -19,6 +19,12 @@
                     wire:navigate>{{ __('Dashboard') }}
                 </flux:navlist.item>
                 @if(auth()->user()->role === 'admin')
+                    <flux:navlist.item icon="calendar" :href="route('create_meeting')"
+                        :current="request()->routeIs('create_meeting')" wire:navigate>
+                        {{ __('Create Meeting') }}
+                    </flux:navlist.item>
+                @endif
+                @if(auth()->user()->role === 'admin')
                     <flux:navlist.item icon="users" :href="route('list-all-mem-dashboard')"
                         :current="request()->routeIs('list-all-mem-dashboard')" wire:navigate>
                         {{ __('All Members') }}

@@ -12,6 +12,11 @@ class Meeting extends Model
         'time',
         'agenda',
         'memo',
+        'minute_path',
+        'financial_path',
+        'official_letter_path',
+        'meeting_status',
+
     ];
 
     public function attendances()
