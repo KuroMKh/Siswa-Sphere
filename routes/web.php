@@ -10,6 +10,7 @@ use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AllMemberInformationController;
 use App\Http\Controllers\UpdateMemberPositionController;
+use App\Http\Controllers\updateattendance;
 
 
 Route::get('/', function () {
@@ -26,16 +27,14 @@ Route::middleware(['auth', 'role:admin'])->get('/manage_member/list-all-mem-dash
 Route::middleware(['auth', 'role:admin'])->get('/manage_member/all-mem-profile-detail/{matrix_no}', [AllMemberInformationController::class, 'viewallmember'])->name('all-mem-profile-detail');
 Route::post('/createmeetings', [MeetingController::class, 'createmeeting'])->name('createmeeting');
 Route::middleware(['auth', 'role:admin'])->get('/admin/admin.meetingdetail/{id}', [MeetingController::class, 'showadmin'])->name('admin.meetingdetail');
-Route::post('/manage_meeting/admin_meetingdetail/{id}', [MeetingController::class, 'updateStatus'])
-    ->middleware(['auth', 'role:admin'])
-    ->name('admin_meetingdetail');
-
+Route::post('/manage_meeting/admin_meetingdetail/{id}', [MeetingController::class, 'updateStatus'])->middleware(['auth', 'role:admin'])->name('admin_meetingdetail');
 Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 Route::post('/manage_member/all-mem-profile-detail/{matrix_no}', [UpdateMemberPositionController::class, 'update'])->middleware(['auth', 'role:admin'])->name('Update-all-mem-profile-detail');
 // Member-only dashboard
 Route::middleware(['auth', 'role:member'])->get('/member/mem-dashboard', [MemberController::class, 'index'])->name('member.mem-dashboard');
 Route::middleware(['auth', 'role:member'])->get('/member/mem-meetingdetail/{id}', [MeetingController::class, 'show'])->name('member.mem-meetingdetail');
 Route::middleware(['auth', 'role:member'])->get('/member/mem-profile', [MemberController::class, 'viewmemprofile'])->name('member.mem-profile');
+Route::post('/admin/meeting/{id}/attendance', [updateattendance::class, 'storeAttendance'])->name('member_attendance');
 Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
