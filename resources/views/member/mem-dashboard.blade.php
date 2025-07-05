@@ -62,9 +62,9 @@
                         {{-- ✅ Status badge --}}
                         <div class="mt-3">
                             <span class="text-sm font-semibold
-                                                @if ($meeting->user_status === 'coming') text-green-600
-                                                @elseif ($meeting->user_status === 'absent') text-red-600
-                                                @else text-yellow-500 @endif">
+                                                    @if ($meeting->user_status === 'Attend') text-green-600
+                                                    @elseif ($meeting->user_status === 'Absent') text-red-600
+                                                    @else text-yellow-500 @endif">
                                 Status: {{ ucfirst($meeting->user_status) }}
                             </span>
                         </div>

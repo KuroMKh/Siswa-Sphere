@@ -15,11 +15,19 @@
                 <p><strong>🗒️ Memo:</strong> {{ $meeting->memo ?: 'Not Provided' }}</p>
             </div>
 
-            <div class="mt-6">
-                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                    ✅ Confirm Attendance
+            <form method="POST" action="{{ route('member_attendance', $meeting->id) }}">
+                @csrf
+                <button type="submit" name="attendance_status" value="Absent"
+                    class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+                    ❌ Absent
                 </button>
-            </div>
+
+                <button type="submit" name="attendance_status" value="Attend"
+                    class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                    ✔️ Attend
+                </button>
+            </form>
+
         </div>
     </div>
 </x-layouts.app>

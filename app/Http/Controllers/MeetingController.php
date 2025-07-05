@@ -63,7 +63,7 @@ class MeetingController extends Controller
         $meeting->meeting_status = $request->input('meeting_status');
         $meeting->save();
 
-        return redirect()->route('dashboard')->with('success', 'Meeting status updated successfully!');
+        return redirect()->route('member.mem-dashboard')->with('success', 'Meeting status updated successfully!');
     }
 
 }
