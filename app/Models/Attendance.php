@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Attendance extends Model
@@ -9,6 +8,7 @@ class Attendance extends Model
     protected $fillable = [
         'matrix_no',
         'meeting_id',
+        'absent_reason',
         'status',
     ];
 

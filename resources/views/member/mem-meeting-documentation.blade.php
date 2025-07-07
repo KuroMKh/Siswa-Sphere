@@ -1,0 +1,1 @@
+<x-layouts.app :title="__('Member Documentation')"></x-layouts.app>

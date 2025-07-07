@@ -36,6 +36,13 @@
                         {{ __('Member Information') }}
                     </flux:navlist.item>
                 @endif
+                @if(auth()->user()->role === 'member')
+                    <flux:navlist.item icon="folder" :href="route('member.mem-meeting-documentation')"
+                        :current="request()->routeIs('member.mem-meeting-documentation')" wire:navigate>
+                        {{ __('Meeting Documentation') }}
+                    </flux:navlist.item>
+                @endif
+
             </flux:navlist.group>
         </flux:navlist>
 
