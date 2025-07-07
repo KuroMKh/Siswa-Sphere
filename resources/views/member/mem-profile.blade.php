@@ -108,8 +108,8 @@
                 return;
             }
 
-            if (semester < 1 || semester > 3) {
-                alert('Please enter a valid semester (1-3).');
+            if (semester < 1 || semester > 8) {
+                alert('Please enter a valid semester (1-8).');
                 return;
             }
 

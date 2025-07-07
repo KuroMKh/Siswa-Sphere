@@ -56,6 +56,14 @@ class MemberController extends Controller
 
     public function viewmeetingdocumentation()
     {
-        return view('member.mem-meeting-documentation');
+
+        $user = Auth::user();
+        $matrixNo = $user->matrix_no;
+
+        $meetings = Meeting::orderBy('date')->paginate(4);
+
+        $meetingCount = $meetings->total(); // Total meetings including pagination
+      
+        return view('member.mem-meeting-documentation', compact('meetings'));
     }
 }
