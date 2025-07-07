@@ -49,5 +49,18 @@ class AdminController extends Controller
         return view('manage_member.list-all-mem-dashboard', compact('listalluser', 'usercount', 'positiondropdown'));
     }
 
+    public function viewmeetingdocumentation()
+    {
+
+        $user = Auth::user();
+        $matrixNo = $user->matrix_no;
+
+        $meetings = Meeting::orderBy('date')->paginate(4);
+
+        $meetingCount = $meetings->total(); // Total meetings including pagination
+
+        return view('manage_meeting.admin-meeting-documentation', compact('meetings'));
+    }
+
 
 }
