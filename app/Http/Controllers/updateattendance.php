@@ -14,6 +14,7 @@ class updateattendance extends Controller
 
         $request->validate([
             'attendance_status' => 'required|in:Attend,Absent',
+            'absent_reason' => 'nullable|string',
         ]);
 
         $existing = Attendance::where('meeting_id', $id)
@@ -28,6 +29,7 @@ class updateattendance extends Controller
             'meeting_id' => $id,
             'matrix_no' => $matrixNo,
             'status' => $request->attendance_status,
+            'absent_reason' => $request->absent_reason,
         ]);
 
         return redirect()->route('member.mem-dashboard')->with('success', 'Attendance recorded!');
