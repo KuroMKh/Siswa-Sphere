@@ -21,7 +21,7 @@
                 class="space-y-4">
                 @csrf
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Current Positiop</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Current Position</label>
                     <input type="text" name="position" value="{{ $user->position}}"
                         class="w-full mt-1 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-800 px-3 py-2 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
