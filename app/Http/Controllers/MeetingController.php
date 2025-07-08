@@ -63,7 +63,73 @@ class MeetingController extends Controller
         $meeting->meeting_status = $request->input('meeting_status');
         $meeting->save();
 
-        return redirect()->route('member.mem-dashboard')->with('success', 'Meeting status updated successfully!');
+        return redirect()->route('dashboard')->with('success', 'Meeting status updated successfully!');
+    }
+
+    public function updateDocument(Request $request, $id, $type)
+    {
+        $request->validate([
+            'document' => 'required|file|mimes:pdf,doc,docx|max:2048'
+        ]);
+
+        $meeting = Meeting::findOrFail($id);
+
+        $file = $request->file('document');
+        $filename = $type . '_' . time() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('documents', $filename, 'public');
+
+        // Update correct column based on type
+        if ($type === 'financial') {
+            $meeting->financial_path = 'storage/' . $path;
+        } elseif ($type === 'minutes') {
+            $meeting->minutes_path = 'storage/' . $path;
+        } elseif ($type === 'official_letter') {
+            $meeting->official_letter_path = 'storage/' . $path;
+        } else {
+            return back()->with('error', 'Invalid document type');
+        }
+
+        $meeting->save();
+
+        return back()->with('success', ucfirst($type) . ' document updated successfully!');
+    }
+
+    public function updateAgendaMemo(Request $request, $id, $type)
+    {
+
+        if ($type === 'agenda') {
+            $request->validate([
+                'agenda' => 'required|string',
+            ]);
+            $meeting = Meeting::findOrFail($id);
+            $meeting->agenda = $request->input('agenda'); // Assign new agenda
+            $meeting->save();
+
+        } elseif ($type === 'memo') {
+            $request->validate([
+                'memo' => 'required|string',
+            ]);
+            $meeting = Meeting::findOrFail($id);
+            $meeting->memo = $request->input('memo'); //Assign Memo
+            $meeting->save();
+        }
+
+        return back()->with('success', ucfirst($type) . '  updated successfully!');
+    }
+
+    public function updateDateTime(Request $request, $id)
+    {
+
+        $request->validate([
+            'date' => 'required|date',
+            'time' => 'required|date_format:H:i',
+        ]);
+        $meeting = Meeting::findOrFail($id);
+        $meeting->date = $request->input('date');
+        $meeting->time = $request->input('time');
+        $meeting->save();
+
+        return back()->with('success', 'updated successfully!');
     }
 
 }

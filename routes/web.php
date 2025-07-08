@@ -31,6 +31,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/manage_meeting/create_meeting', [AdminController::class, 'newmeeting'])->name('create_meeting');
     Route::get('/admin/admin.meetingdetail/{id}', [MeetingController::class, 'showadmin'])->name('admin.meetingdetail');
     Route::post('/manage_meeting/admin_meetingdetail/{id}', [MeetingController::class, 'updateStatus'])->name('admin_meetingdetail');
+    Route::get('/manage_meeting/admin-meeting-documentation', [AdminController::class, 'viewmeetingdocumentation'])->name('admin-meeting-documentation');
+    Route::post('/manage_meeting/admin_meetingdetail/{id}/update-document/{type}', [MeetingController::class, 'updateDocument'])->name('meeting.updateDocument');
+    Route::post('/manage_meeting/admin_meetingdetail/{id}/update-agendaMemo/{type}', [MeetingController::class, 'updateAgendaMemo'])->name('meeting.updateAgendaMemo');
+    Route::post('/manage_meeting/admin_meetingdetail/{id}/update-agendaDateTime', [MeetingController::class, 'updateDateTime'])->name('meeting.updateDateTime');
 
     // Member Management
     Route::get('/manage_member/list-all-mem-dashboard', [AdminController::class, 'list'])->name('list-all-mem-dashboard');

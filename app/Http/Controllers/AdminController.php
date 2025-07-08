@@ -11,22 +11,17 @@ class AdminController extends Controller
 {
     public function index()
     {
+
+
         $user = Auth::user();
         $matrixNo = $user->matrix_no;
 
-        // Get all meetings and map each with user's attendance status
-        $meetings = Meeting::orderBy('date')->get()->map(function ($meeting) use ($matrixNo) {
-            $attendance = Attendance::where('matrix_no', $matrixNo)
-                ->where('meeting_id', $meeting->id)
-                ->first();
+        $meetings = Meeting::orderBy('date')->paginate(4);
 
-            $meeting->user_status = $attendance ? $attendance->status : 'pending';
-            return $meeting;
-        });
-
-        $meetingCount = $meetings->count(); // or just Meeting::count();
-
-        return view('dashboard', compact('meetings', 'meetingCount'));
+        $meetingCount = $meetings->total(); // Total meetings including pagination
+        $meetingFinished = Meeting::where('meeting_status', 'Finished')->count();
+        $meetingCancelled = Meeting::where('meeting_status', 'Cancelled')->count();
+        return view('dashboard', compact('meetings', 'meetingCount', 'meetingFinished', 'meetingCancelled'));
     }
 
     public function newmeeting()
@@ -47,6 +42,19 @@ class AdminController extends Controller
 
         // Pass the data to the view
         return view('manage_member.list-all-mem-dashboard', compact('listalluser', 'usercount', 'positiondropdown'));
+    }
+
+    public function viewmeetingdocumentation()
+    {
+
+        $user = Auth::user();
+        $matrixNo = $user->matrix_no;
+
+        $meetings = Meeting::orderBy('date')->paginate(4);
+
+        $meetingCount = $meetings->total(); // Total meetings including pagination
+
+        return view('manage_meeting.admin-meeting-documentation', compact('meetings'));
     }
 
 
