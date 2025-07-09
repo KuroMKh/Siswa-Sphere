@@ -238,23 +238,32 @@
                         Meeting Actions
                     </h2>
 
-                    <form method="POST" action="{{ route('admin_meetingdetail', $meeting->id) }}"
-                        class="flex flex-wrap gap-4">
-                        @csrf
-                        <button type="submit" name="meeting_status" value="Cancelled"
-                            onclick="return confirmMeetingAction('cancel', '❌')"
-                            class="flex-1 min-w-[200px] bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center">
-                            <span class="mr-2">❌</span>
-                            Cancel Meeting
-                        </button>
+                    <div class="flex flex-wrap gap-4">
+                        <!-- Cancel Meeting Form -->
+                        <form method="POST" action="{{ route('admin_meetingdetail', $meeting->id) }}"
+                            class="flex-1 min-w-[200px]" onsubmit="return confirmMeetingAction('cancel', '❌')">
+                            @csrf
+                            <input type="hidden" name="meeting_status" value="Cancelled">
+                            <button type="submit"
+                                class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                                <span class="mr-2">❌</span>
+                                Cancel Meeting
+                            </button>
+                        </form>
 
-                        <button type="submit" name="meeting_status" value="Finished"
-                            onclick="return confirmMeetingAction('mark as finished', '✅')"
-                            class="flex-1 min-w-[200px] bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center">
-                            <span class="mr-2">✅</span>
-                            Mark as Finished
-                        </button>
-                    </form>
+                        <!-- Finish Meeting Form -->
+                        <form method="POST" action="{{ route('admin_meetingdetail', $meeting->id) }}"
+                            class="flex-1 min-w-[200px]"
+                            onsubmit="return confirmMeetingAction('mark as finished', '✅')">
+                            @csrf
+                            <input type="hidden" name="meeting_status" value="Finished">
+                            <button type="submit"
+                                class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                                <span class="mr-2">✅</span>
+                                Mark as Finished
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
