@@ -14,16 +14,6 @@
                 </p>
             </div>
 
-            <!-- Quick Actions Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    Quick Actions
-                </h2>
-                <p class="text-gray-600 dark:text-gray-300">
-                    Manage & Export
-                </p>
-            </div>
-
         </div>
 
         <!-- Members List Section -->
