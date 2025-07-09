@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Member Dashboard')">
+<x-layouts.app :title="__('Admin Dashboard')">
     <div class="p-6 max-w-7xl mx-auto">
 
         <!-- Dashboard Header -->
@@ -19,7 +19,7 @@
                             Meeting in Line
                         </h2>
                         <p class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">{{ $meetingCount }}</p>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm">meetings scheduled</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Meetings Scheduled</p>
                     </div>
                     <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-full">
                         <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor"
