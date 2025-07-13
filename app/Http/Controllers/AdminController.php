@@ -49,11 +49,8 @@ class AdminController extends Controller
 
         $user = Auth::user();
         $matrixNo = $user->matrix_no;
-
         $meetings = Meeting::orderBy('date')->paginate(4);
-
         $meetingCount = $meetings->total(); // Total meetings including pagination
-
         return view('manage_meeting.admin-meeting-documentation', compact('meetings'));
     }
 

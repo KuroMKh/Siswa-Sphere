@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Attendance::class);
     }
+
+    public function studentinformation()
+    {
+        return $this->hasOne(StudentInformation::class, 'matrix_no', 'matrix_no');
+    }
 }
