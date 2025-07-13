@@ -46,7 +46,7 @@ class AdminController extends Controller
             'studentinformation.date_of_birth',
             'studentinformation.address',
             'studentinformation.year',
-            'studentinformation.year',
+            'studentinformation.semester',
             'studentinformation.bio',
             'studentinformation.gender',
             'studentinformation.position'
